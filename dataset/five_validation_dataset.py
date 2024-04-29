@@ -37,14 +37,15 @@ class FiveValidationDataset(Dataset):
             all_issame.append(dup_issame)
             all_dataname.append([self.dataname_to_idx[key]] * len(imgs))
             key_orders.append(key)
-        assert key_orders == ['agedb_30', 'cfp_fp', 'lfw', 'cplfw', 'calfw']
+        # assert key_orders == ['agedb_30', 'cfp_fp', 'lfw', 'cplfw', 'calfw']
+        assert key_orders == ['lfw']
 
         if isinstance(all_imgs[0], np.memmap):
             self.all_imgs = evaluate_utils.read_memmap(concat_mem_file_name)
         else:
             self.all_imgs = np.concatenate(all_imgs)
 
-        self.all_issame = np.concatenate(all_issame)
+        self.all_issame = np.vstack(all_issame).T
         self.all_dataname = np.concatenate(all_dataname)
 
         assert len(self.all_imgs) == len(self.all_issame)

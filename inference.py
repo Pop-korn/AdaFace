@@ -4,6 +4,7 @@ import os
 # from face_alignment import align
 import numpy as np
 from PIL import Image
+import time
 
 
 adaface_models = {
@@ -34,14 +35,21 @@ if __name__ == '__main__':
     model = load_pretrained_model('ir_50')
     feature, norm = model(torch.randn(2,3,112,112))
 
-    test_image_path = 'data'
+    test_image_path = 'data/tmp'
     features = []
     for fname in sorted(os.listdir(test_image_path)):
+        start = time.time()
+
         path = os.path.join(test_image_path, fname)
         aligned_rgb_img = Image.open(path)
         bgr_tensor_input = to_input(aligned_rgb_img)
         feature, _ = model(bgr_tensor_input)
         features.append(feature)
+
+        print(time.time() - start)
+
+    print(torch.cat(features))
+    print(torch.cat(features).shape)
 
     similarity_scores = torch.cat(features) @ torch.cat(features).T
     print(similarity_scores)

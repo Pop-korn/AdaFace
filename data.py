@@ -41,7 +41,7 @@ class DataModule(pl.LightningDataModule):
         if not os.path.isfile(self.concat_mem_file_name):
             # create a concat memfile
             concat = []
-            for key in ['agedb_30', 'cfp_fp', 'lfw', 'cplfw', 'calfw']:
+            for key in ['lfw']: #['agedb_30', 'cfp_fp', 'lfw', 'cplfw', 'calfw']:
                 np_array, issame = evaluate_utils.get_val_pair(path=os.path.join(self.data_root, self.val_data_path),
                                                                name=key,
                                                                use_memfile=False)
@@ -158,13 +158,14 @@ def train_dataset(data_root, train_data_path,
 def val_dataset(data_root, val_data_path, concat_mem_file_name):
     val_data = evaluate_utils.get_val_data(os.path.join(data_root, val_data_path))
     # theses datasets are already normalized with mean 0.5, std 0.5
-    age_30, cfp_fp, lfw, age_30_issame, cfp_fp_issame, lfw_issame, cplfw, cplfw_issame, calfw, calfw_issame = val_data
+    # age_30, cfp_fp, lfw, age_30_issame, cfp_fp_issame, lfw_issame, cplfw, cplfw_issame, calfw, calfw_issame = val_data
+    lfw, lfw_issame = val_data
     val_data_dict = {
-        'agedb_30': (age_30, age_30_issame),
-        "cfp_fp": (cfp_fp, cfp_fp_issame),
+        # 'agedb_30': (age_30, age_30_issame),
+        # "cfp_fp": (cfp_fp, cfp_fp_issame),
         "lfw": (lfw, lfw_issame),
-        "cplfw": (cplfw, cplfw_issame),
-        "calfw": (calfw, calfw_issame),
+        # "cplfw": (cplfw, cplfw_issame),
+        # "calfw": (calfw, calfw_issame),
     }
     val_dataset = FiveValidationDataset(val_data_dict, concat_mem_file_name)
 
@@ -174,13 +175,14 @@ def val_dataset(data_root, val_data_path, concat_mem_file_name):
 def test_dataset(data_root, val_data_path, concat_mem_file_name):
     val_data = evaluate_utils.get_val_data(os.path.join(data_root, val_data_path))
     # theses datasets are already normalized with mean 0.5, std 0.5
-    age_30, cfp_fp, lfw, age_30_issame, cfp_fp_issame, lfw_issame, cplfw, cplfw_issame, calfw, calfw_issame = val_data
+    # age_30, cfp_fp, lfw, age_30_issame, cfp_fp_issame, lfw_issame, cplfw, cplfw_issame, calfw, calfw_issame = val_data
+    lfw, lfw_issame = val_data
     val_data_dict = {
-        'agedb_30': (age_30, age_30_issame),
-        "cfp_fp": (cfp_fp, cfp_fp_issame),
+        # 'agedb_30': (age_30, age_30_issame),
+        # "cfp_fp": (cfp_fp, cfp_fp_issame),
         "lfw": (lfw, lfw_issame),
-        "cplfw": (cplfw, cplfw_issame),
-        "calfw": (calfw, calfw_issame),
+        # "cplfw": (cplfw, cplfw_issame),
+        # "calfw": (calfw, calfw_issame),
     }
     val_dataset = FiveValidationDataset(val_data_dict, concat_mem_file_name)
     return val_dataset

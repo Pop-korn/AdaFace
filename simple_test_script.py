@@ -1,7 +1,7 @@
 import inference
 from PIL import Image
 
-image_path = 'data/style_images/a.jpg'
+image_path = 'data/train/man/man_1.jpg'
 
 model = inference.load_pretrained_model()
 

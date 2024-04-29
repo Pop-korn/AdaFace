@@ -9,12 +9,13 @@ import sklearn
 from scipy import interpolate
 
 def get_val_data(data_path):
-    agedb_30, agedb_30_issame = get_val_pair(data_path, 'agedb_30')
-    cfp_fp, cfp_fp_issame = get_val_pair(data_path, 'cfp_fp')
+    # agedb_30, agedb_30_issame = get_val_pair(data_path, 'agedb_30')
+    # cfp_fp, cfp_fp_issame = get_val_pair(data_path, 'cfp_fp')
     lfw, lfw_issame = get_val_pair(data_path, 'lfw')
-    cplfw, cplfw_issame = get_val_pair(data_path, 'cplfw')
-    calfw, calfw_issame = get_val_pair(data_path, 'calfw')
-    return agedb_30, cfp_fp, lfw, agedb_30_issame, cfp_fp_issame, lfw_issame, cplfw, cplfw_issame, calfw, calfw_issame
+    # cplfw, cplfw_issame = get_val_pair(data_path, 'cplfw')
+    # calfw, calfw_issame = get_val_pair(data_path, 'calfw')
+    # return agedb_30, cfp_fp, lfw, agedb_30_issame, cfp_fp_issame, lfw_issame, cplfw, cplfw_issame, calfw, calfw_issame
+    return lfw, lfw_issame
 
 def get_val_pair(path, name, use_memfile=True):
     if use_memfile:

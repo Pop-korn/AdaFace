@@ -9,3 +9,8 @@ validation_ijbs
 *.csv
 result
 scripts/run_debug*
+
+data/faces_webface_112x112/lfw.bin
+data/faces_webface_112x112/lfw_list.npy
+data/faces_webface_112x112/lfw/data
+data/faces_webface_112x112/lfw/meta
