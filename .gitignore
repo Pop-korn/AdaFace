@@ -14,3 +14,4 @@ data/faces_webface_112x112/lfw.bin
 data/faces_webface_112x112/lfw_list.npy
 data/faces_webface_112x112/lfw/data
 data/faces_webface_112x112/lfw/meta
+data/faces_webface_112x112/concat_validation_memfile

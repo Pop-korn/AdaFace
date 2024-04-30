@@ -31,7 +31,7 @@ class Trainer(LightningModule):
         self.cross_entropy_loss = CrossEntropyLoss()
 
         if self.hparams.start_from_model_statedict:
-            ckpt = torch.load(self.hparams.start_from_model_statedict)
+            ckpt = torch.load(self.hparams.start_from_model_statedict, map_location=torch.device('cpu'))  # TODO Remove map_location
             self.model.load_state_dict({key.replace('model.', ''):val
                                         for key,val in ckpt['state_dict'].items() if 'model.' in key})
 
