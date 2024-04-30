@@ -138,6 +138,8 @@ def calculate_roc(thresholds, embeddings1, embeddings2, actual_issame, nrof_fold
 
 
 def calculate_accuracy(threshold, dist, actual_issame):
+    actual_issame = actual_issame.flatten()
+
     predict_issame = np.less(dist, threshold)
     tp = np.sum(np.logical_and(predict_issame, actual_issame))
     fp = np.sum(np.logical_and(predict_issame, np.logical_not(actual_issame)))
