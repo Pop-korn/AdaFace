@@ -81,9 +81,9 @@ loss = torch.nn.CrossEntropyLoss()(cosine_with_margin, labels)
 # Installation
 
 ```
-conda create --name adaface pytorch==1.8.0 torchvision==0.9.0 cudatoolkit=10.2 -c pytorch
+conda create --name adaface pytorch==1.8.0 torchvision==0.9.0 cudatoolkit=10.2 python=3.8 -c pytorch
 conda activate adaface
-conda install scikit-image matplotlib pandas scikit-learn 
+conda install matplotlib 
 pip install -r requirements.txt
 ```
 
