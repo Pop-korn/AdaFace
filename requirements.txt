@@ -5,7 +5,7 @@ bcolz-zipline
 prettytable
 menpo
 mxnet
-opencv-python
+opencv-python-headless
 numpy==1.20.0
 pandas<1.5.0
 scikit-image

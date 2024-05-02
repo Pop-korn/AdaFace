@@ -81,10 +81,16 @@ loss = torch.nn.CrossEntropyLoss()(cosine_with_margin, labels)
 # Installation
 
 ```
-conda create --name adaface pytorch==1.8.0 torchvision==0.9.0 cudatoolkit=10.2 python=3.8 -c pytorch
-conda activate adaface
+conda create --name adaface pytorch==1.8.0 torchvision==0.9.0 cudatoolkit=10.2 python=3.8.10 -c pytorch
+source /opt/conda/bin/activate adaface
 conda install matplotlib 
-pip install -r requirements.txt
+pip install nvidia_cublas_cu11==11.10.3.66 --no-cache-dir
+pip install nvidia_cudnn_cu11==8.5.0.96 --no-cache-dir
+pip install opencv_python==4.9.0.80 --no-cache-dir
+pip install scikit_learn==1.3.2 --no-cache-dir
+pip install PyWavelets==1.4.1 --no-cache-dir
+pip install aiohttp==3.9.5 --no-cache-dir
+pip install -r requirements.txt --no-cache-dir
 ```
 
 # Train (Preapring Dataset and Training Scripts)
