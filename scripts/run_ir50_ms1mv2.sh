@@ -1,12 +1,11 @@
 
 python main.py \
-    --data_root /mnt/home/kimminc2/data \
-    --train_data_path faces_emore \
-    --val_data_path faces_emore \
+    --data_root /storage/brno2/home/map/AdaFace/data/faces_webface_112x112 \
+    --train_data_path train \
+    --val_data_path . \
     --prefix ir50_ms1mv2_adaface \
-    --use_wandb \
     --use_mxrecord \
-    --gpus 2 \
+    --gpus 1 \
     --use_16bit \
     --arch ir_50 \
     --batch_size 512 \
@@ -19,5 +18,7 @@ python main.py \
     --h 0.333 \
     --low_res_augmentation_prob 0.2 \
     --crop_augmentation_prob 0.2 \
-    --photometric_augmentation_prob 0.2
+    --photometric_augmentation_prob 0.2 \
+    --resume_from_checkpoint ./pretrained/adaface_ir50_ms1mv2.ckpt
+
 

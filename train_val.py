@@ -57,7 +57,8 @@ class Trainer(LightningModule):
         if isinstance(scheduler, lr_scheduler._LRScheduler):
             lr = scheduler.get_last_lr()[0]
         else:
-            lr = scheduler.get_epoch_values(self.current_epoch)[0]
+            # lr = scheduler.get_epoch_values(self.current_epoch)[0]
+            lr = scheduler.get_last_lr()
         return lr
 
 
@@ -77,7 +78,7 @@ class Trainer(LightningModule):
         loss_train = self.cross_entropy_loss(cos_thetas, labels)
         lr = self.get_current_lr()
         # log
-        self.log('lr', lr, on_step=True, on_epoch=True, logger=True)
+        self.log('lr', lr[0], on_step=True, on_epoch=True, logger=True)
         self.log('train_loss', loss_train, on_step=True, on_epoch=True, logger=True)
 
         return loss_train
@@ -119,6 +120,8 @@ class Trainer(LightningModule):
         all_output_tensor, all_norm_tensor, all_target_tensor, all_dataname_tensor = self.gather_outputs(outputs)
 
         dataname_to_idx = {"agedb_30": 0, "cfp_fp": 1, "lfw": 2, "cplfw": 3, "calfw": 4}
+        # dataname_to_idx = {"lfw": 0}
+
         idx_to_dataname = {val: key for key, val in dataname_to_idx.items()}
         val_logs = {}
         for dataname_idx in all_dataname_tensor.unique():
@@ -143,6 +146,8 @@ class Trainer(LightningModule):
         for k, v in val_logs.items():
             # self.log(name=k, value=v, rank_zero_only=True)
             self.log(name=k, value=v)
+
+        print('\n\n\n VALIDATION END \n\n\n')
 
         return None
 
