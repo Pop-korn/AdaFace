@@ -54,7 +54,7 @@ def get_args():
 
 
 def add_task_arguments(parser):
-    parser.add_argument('--arch', default='ir_18')
+    parser.add_argument('--arch', default='ir_50')
     parser.add_argument('--momentum', default=0.9, type=float, metavar='M')
     parser.add_argument('--weight_decay', default=1e-4, type=float)
 

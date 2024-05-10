@@ -20,7 +20,8 @@ class FiveValidationDataset(Dataset):
         cplfw: 3
         calfw: 4
         '''
-        self.dataname_to_idx = {"agedb_30": 0, "cfp_fp": 1, "lfw": 2, "cplfw": 3, "calfw": 4}
+        # self.dataname_to_idx = {"agedb_30": 0, "cfp_fp": 1, "lfw": 2, "cplfw": 3, "calfw": 4}
+        self.dataname_to_idx = {"lfw": 0}
 
         self.val_data_dict = val_data_dict
         # concat all dataset

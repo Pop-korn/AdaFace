@@ -31,7 +31,7 @@ class Trainer(LightningModule):
         self.cross_entropy_loss = CrossEntropyLoss()
 
         if self.hparams.start_from_model_statedict:
-            ckpt = torch.load(self.hparams.start_from_model_statedict)
+            ckpt = torch.load(self.hparams.start_from_model_statedict, map_location=torch.device('cpu'))  # TODO Remove map_location
             self.model.load_state_dict({key.replace('model.', ''):val
                                         for key,val in ckpt['state_dict'].items() if 'model.' in key})
 
@@ -158,7 +158,8 @@ class Trainer(LightningModule):
 
         all_output_tensor, all_norm_tensor, all_target_tensor, all_dataname_tensor = self.gather_outputs(outputs)
 
-        dataname_to_idx = {"agedb_30": 0, "cfp_fp": 1, "lfw": 2, "cplfw": 3, "calfw": 4}
+        # dataname_to_idx = {"agedb_30": 0, "cfp_fp": 1, "lfw": 2, "cplfw": 3, "calfw": 4}
+        dataname_to_idx = {"lfw": 0}
         idx_to_dataname = {val: key for key, val in dataname_to_idx.items()}
         test_logs = {}
         for dataname_idx in all_dataname_tensor.unique():
@@ -174,6 +175,8 @@ class Trainer(LightningModule):
             test_logs[f'{dataname}_test_acc'] = acc
             test_logs[f'{dataname}_test_best_threshold'] = best_threshold
             test_logs[f'{dataname}_num_test_samples'] = num_test_samples
+
+            test_logs[f'{dataname}_embedings_shape'] = embeddings.shape
 
         test_logs['test_acc'] = np.mean([
             test_logs[f'{dataname}_test_acc'] for dataname in dataname_to_idx.keys()

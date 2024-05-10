@@ -18,7 +18,7 @@ data/faces_webface_112x112/lfw/meta
 data/faces_webface_112x112/concat_validation_memfile.conf
 data/faces_webface_112x112/lfw/memfile/mem_file.dat
 data/faces_webface_112x112/lfw/memfile/mem_file.dat.conf
-
+data/faces_webface_112x112/concat_validation_memfile
 concat_validation_memfile
-
+mem_file.dat
 lfw.bin
