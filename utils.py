@@ -94,8 +94,8 @@ def all_gather(data):
 
 def get_num_class(hparams):
 
-    # TODO Remove
-    return 12000
+    return 85742 # Return the same number of classes, as used by the original dataset (MS1M).
+
 
     # getting number of subjects in the dataset
     if hparams.custom_num_class != -1:
