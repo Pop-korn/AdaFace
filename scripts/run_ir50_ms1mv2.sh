@@ -2,7 +2,7 @@
 python main.py \
     --data_root /storage/brno2/home/map/AdaFace/data/faces_webface_112x112 \
     --train_data_path train \
-    --val_data_path . \
+    --val_data_path val \
     --prefix ir50_ms1mv2_adaface \
     --use_mxrecord \
     --gpus 1 \
@@ -10,6 +10,7 @@ python main.py \
     --arch ir_50 \
     --batch_size 512 \
     --num_workers 16 \
+    --use_wandb \
     --epochs 26 \
     --lr_milestones 12,20,24 \
     --lr 0.1 \
